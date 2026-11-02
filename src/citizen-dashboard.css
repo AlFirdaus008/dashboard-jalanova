@@ -1,0 +1,35 @@
+.citizen-dashboard { max-width:1250px; margin:0 auto; }
+.citizen-dashboard-hero { display:flex; align-items:flex-start; justify-content:space-between; gap:25px; padding:32px 34px; border-radius:20px; background:#eaf2e6; border:1px solid #d8e7d5; }
+.citizen-dashboard-hero h1 { margin:8px 0 9px; font-size:clamp(27px,3vw,40px); font-weight:500; }
+.citizen-dashboard-hero p { max-width:510px; color:#627565; font-size:13px; line-height:1.8; }
+.citizen-dashboard-actions { display:flex; align-items:center; flex-wrap:wrap; gap:12px; margin-top:23px; }
+.citizen-logout { flex-shrink:0; color:#536d5c; font-size:11px; text-decoration:underline; text-underline-offset:4px; }
+.citizen-dashboard-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin:17px 0 24px; }
+.citizen-dashboard-stats>div { display:flex; flex-direction:column; gap:8px; padding:20px 22px; border:1px solid #e1e8df; border-radius:15px; background:#fffefa; }
+.citizen-dashboard-stats span { color:#6f816e; font-size:11px; }
+.citizen-dashboard-stats strong { font-size:30px; line-height:1; font-weight:500; }
+.citizen-live-notice,.citizen-completion { display:flex; align-items:flex-start; gap:12px; padding:14px 17px; border:1px solid #cfe1c9; border-radius:12px; background:#edf5e9; color:#275840; font-size:12px; line-height:1.7; margin-bottom:18px; }
+.citizen-live-notice>button { margin-left:auto; font-size:18px; line-height:1; }
+.citizen-completion strong { display:block; font-size:12px; }
+.citizen-completion p { font-size:11px; margin-top:3px; }
+.citizen-updates { padding:25px 28px; border:1px solid #e0e8dc; border-radius:18px; background:#fffefa; }
+.citizen-updates-heading { display:flex; align-items:center; justify-content:space-between; color:#31694e; }
+.citizen-updates-heading h2 { margin-top:7px; color:var(--ink); font-size:21px; font-weight:500; }
+.citizen-updates ol { list-style:none; padding:0; margin:14px 0 0; }
+.citizen-updates li { display:flex; gap:14px; padding:15px 0; border-top:1px solid #e8ede5; }
+.citizen-update-dot { width:8px; height:8px; margin-top:7px; border-radius:50%; background:#327e60; flex-shrink:0; }
+.citizen-updates li strong { display:block; font-size:12px; font-weight:550; }
+.citizen-update-status { display:inline-block; margin-top:5px; padding:3px 7px; border:1px solid #d7e4d5; border-radius:6px; color:#31694e; font-size:10px; }
+.citizen-updates li p { margin-top:4px; color:#607260; font-size:11px; line-height:1.7; }
+.citizen-updates time { display:block; margin-top:6px; color:#839382; font-size:10px; }
+.citizen-updates-empty { margin-top:16px; color:#667967; font-size:12px; }
+.citizen-dashboard .report-queue { margin-top:38px; }
+.citizen-dashboard .authority-channel-note { margin-top:34px; }
+@media(max-width:700px) {
+  .citizen-dashboard-hero { flex-direction:column; padding:25px; }
+  .citizen-dashboard-stats { gap:8px; }
+  .citizen-dashboard-stats>div { padding:15px 13px; }
+  .citizen-dashboard-stats span { font-size:9px; line-height:1.4; }
+  .citizen-dashboard-stats strong { font-size:24px; }
+  .citizen-updates { padding:20px; }
+}

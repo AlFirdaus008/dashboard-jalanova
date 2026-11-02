@@ -1,0 +1,42 @@
+.role-gateway { max-width:1190px; margin:0 auto; }
+.role-gateway-heading { margin:12px 0 26px; }
+.role-gateway-heading h1 { margin:8px 0 8px; font-size:clamp(30px,3.3vw,44px); font-weight:500; letter-spacing:-.05em; }
+.role-gateway-heading p { max-width:600px; color:var(--muted); font-size:13px; }
+.role-gateway-grid { display:grid; gap:18px; min-height:515px; transition:grid-template-columns 440ms cubic-bezier(.22,1,.36,1); }
+.role-gateway-grid.selected-citizen { grid-template-columns:minmax(0,1.65fr) minmax(300px,.85fr); }
+.role-gateway-grid.selected-staff { grid-template-columns:minmax(300px,.85fr) minmax(0,1.65fr); }
+.role-panel { min-width:0; overflow:hidden; border-radius:22px; transition:background 350ms ease,box-shadow 350ms ease; }
+.role-panel.active { background:#f0f5ec; border:1px solid #d6e4d2; box-shadow:0 12px 36px #31573c14; }
+.role-panel.inactive { background:#193f34; border:1px solid #193f34; }
+.role-panel.inactive { display:flex; }
+.role-panel.inactive .role-panel-toggle { flex:1; }
+.role-panel-toggle { display:flex; align-items:flex-start; width:100%; min-height:108px; gap:19px; padding:26px 28px; text-align:left; }
+.role-panel-toggle:focus-visible { outline-offset:-5px; }
+.role-panel-number { font-size:38px; line-height:1; font-weight:550; letter-spacing:-.06em; color:#9fbb9a; }
+.role-panel-title { display:flex; flex-direction:column; align-items:flex-start; gap:5px; min-width:0; }
+.role-panel-title>svg { color:#1d6a54; margin-bottom:4px; }
+.role-panel-title strong { font-size:19px; line-height:1.25; font-weight:550; letter-spacing:-.03em; }
+.role-panel-title small { max-width:350px; font-size:11px; line-height:1.65; color:#6d806d; }
+.role-panel-arrow { margin-left:auto; color:#5f806a; }
+.role-panel.inactive :is(.role-panel-number,.role-panel-title>svg,.role-panel-arrow) { color:#a9c8af; }
+.role-panel.inactive .role-panel-title strong { color:#f3f8ef; }
+.role-panel.inactive .role-panel-title small { color:#b7cbbb; }
+.role-panel.inactive .role-panel-toggle:hover { background:#295749; }
+.role-panel-form { padding:0 28px 30px; animation:role-form-arrive 260ms ease both; }
+.role-panel-form[hidden] { display:none; }
+.role-gateway .role-panel-form .access-card { max-width:none; margin:0; padding:24px 0 0; border:0; border-top:1px solid #d2e1cf; border-radius:0; background:transparent; box-shadow:none; }
+.role-panel-form .access-card h1 { font-size:24px; }
+.role-panel-form .access-card>p { max-width:590px; }
+.role-panel-form .access-form { max-width:560px; }
+.role-panel-form .access-form .button { max-width:560px; }
+@keyframes role-form-arrive { from { opacity:0; transform:translateY(9px); } to { opacity:1; transform:translateY(0); } }
+@media(max-width:780px) {
+  .role-gateway-grid,.role-gateway-grid.selected-citizen,.role-gateway-grid.selected-staff { display:flex; flex-direction:column; min-height:0; }
+  .role-panel { width:100%; }
+  .role-panel-toggle { min-height:90px; padding:21px; }
+  .role-panel-form { padding:0 21px 25px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .role-gateway-grid,.role-panel { transition:none; }
+  .role-panel-form { animation:none; }
+}

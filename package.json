@@ -1,0 +1,27 @@
+{
+  "name": "jalanova-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "npm@11.9.0",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "prepare:data": "node scripts/prepare-data.mjs",
+    "prepare:figures": "node scripts/prepare-figures.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.118.0",
+    "leaflet": "1.9.4",
+    "lucide-react": "^0.468.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.14",
+    "pg": "^8.23.1",
+    "vite": "^7.3.1"
+  }
+}

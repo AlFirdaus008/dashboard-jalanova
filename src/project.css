@@ -1,0 +1,63 @@
+.hero .hero-headline {
+  max-width: 570px;
+  font-size: clamp(40px, 4vw, 58px);
+  line-height: 1.13;
+  text-wrap: balance;
+}
+.hero-headline>span, .hero-headline>em { display: block; }
+.innovation-section .section-side h2 { font-size: 37px; }
+.innovation-section .section-side>p { max-width: 300px; }
+.focus-list>article { gap: 19px; }
+.focus-list>article>svg { margin-left: 0; }
+.focus-list .focus-copy { flex: 1; min-width: 0; }
+.focus-heading { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 9px 13px; }
+.focus-list .focus-heading h3 { font-size: 19px; line-height: 1.4; }
+.focus-phase {
+  display: inline-block;
+  flex-shrink: 0;
+  margin-top: 3px;
+  padding: 3px 7px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface-soft);
+  color: #6b7f61;
+  font-size: 9px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.focus-list .focus-copy p { max-width: none; font-size: 12px; line-height: 1.85; }
+.focus-list .focus-problem { margin-top: 10px; }
+.focus-direction { margin-top: 14px; padding-left: 13px; border-left: 2px solid #c8d8ba; }
+.focus-direction>span { font-size: 10px; color: #608353; font-weight: 550; }
+.focus-list .focus-direction p { margin-top: 5px; color: #5b7350; }
+.focus-list .focus-current { margin-top: 14px; color: #89957d; font-size: 11px; }
+.focus-current strong { font-weight: 550; }
+.development-intro { margin-bottom: 30px; }
+.focus-detailed>article { padding: 27px 0; }
+.focus-detailed .focus-copy p { font-size: 13px; }
+.focus-next { margin-top: 20px; }
+.focus-next h4 { margin: 0; font-size: 11px; font-weight: 550; color: #708560; }
+.focus-next>a { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; color: #608353; font-size: 11px; }
+.development-references { margin-top: 40px; }
+.development-references>h2 { font-size: 23px; font-weight: 500; margin-bottom: 10px; }
+.development-references>p { color: var(--muted); font-size: 12px; margin-bottom: 20px; }
+:root[data-theme='dark'] .focus-phase { color: #bdd1ae; background: #233827; }
+:root[data-theme='dark'] .focus-direction { border-color: #627f4d; }
+:root[data-theme='dark'] :is(.focus-direction>span, .focus-next>a, .focus-next h4) { color: #b5ce9c; }
+:root[data-theme='dark'] .focus-list .focus-direction p { color: #c0d6ad; }
+:root[data-theme='dark'] .focus-list .focus-current { color: #a3b694; }
+@media (max-width: 1100px) {
+  .hero .hero-headline { font-size: clamp(37px, 4.5vw, 51px); }
+  .innovation-section .section-side h2 { font-size: 32px; }
+  .focus-list>article { gap: 13px; }
+  .focus-list>article>svg { display: none; }
+}
+@media (max-width: 700px) {
+  .hero .hero-headline { font-size: clamp(38px, 9vw, 52px); line-height: 1.13; }
+  .innovation-section .section-side h2 { font-size: 35px; }
+  .innovation-section .section-side>p { max-width: none; }
+  .focus-list .focus-copy p { font-size: 12px; }
+  .focus-list .focus-current { font-size: 11px; }
+  .focus-list .focus-heading h3 { font-size: 18px; }
+  .focus-next>a { font-size: 10px; }
+}

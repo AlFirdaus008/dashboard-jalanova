@@ -1,0 +1,26 @@
+.competition-section { max-width:1284px; margin:0 auto 52px; padding:34px; border-block:1px solid var(--line); display:grid; grid-template-columns:minmax(260px,.85fr) minmax(0,1.2fr); gap:40px; align-items:center; }
+.competition-copy h2 { font-family:'DM Serif Display',Georgia,serif; font-size:32px; font-weight:400; line-height:1.2; margin-top:12px; }
+.competition-copy p { max-width:440px; font-size:12px; line-height:1.9; color:var(--muted); margin-top:14px; }
+.competition-copy>a { display:inline-block; font-size:11px; color:var(--green); margin-top:20px; text-decoration:underline; text-underline-offset:4px; }
+.competition-identities { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); align-items:start; gap:12px; }
+.competition-identity { display:block; text-align:center; min-width:0; padding:4px; }
+.competition-mark { display:flex; align-items:center; justify-content:center; height:122px; overflow:hidden; }
+.competition-mark img { display:block; max-width:none; height:auto; flex:none; }
+.competition-city img { width:112px; }
+.competition-brida img { width:186px; }
+.competition-inovboyo img { width:164px; }
+.competition-identity>span { display:block; margin-top:12px; font-size:10px; line-height:1.7; color:var(--muted); }
+.competition-identity:hover>span { color:var(--green); text-decoration:underline; text-underline-offset:3px; }
+.sidebar-competition { display:flex; gap:9px; align-items:center; min-height:62px; padding:8px; border:1px solid var(--line); border-radius:6px; background:var(--surface-soft); margin-bottom:16px; }
+.sidebar-competition:hover { border-color:var(--green); }
+.sidebar-competition-mark { display:flex; width:40px; height:40px; align-items:center; justify-content:center; overflow:hidden; flex-shrink:0; }
+.sidebar-competition-mark img { width:58px; height:58px; max-width:none; flex:none; }
+.sidebar-competition-copy { min-width:0; }
+.sidebar-competition-copy strong { display:block; font-size:10px; color:var(--ink); font-weight:550; line-height:1.6; }
+.sidebar-competition-copy small { display:block; font-size:8px; line-height:1.8; color:var(--muted); margin-top:2px; }
+.sidebar-competition.compact { width:44px; min-height:44px; height:44px; padding:2px; gap:0; margin-inline:auto; }
+.sidebar-competition.compact .sidebar-competition-copy { display:none; }
+@media(max-width:1390px) { .competition-section { margin-inline:58px; padding-inline:0; } }
+@media(max-width:1100px) { .competition-section { margin-inline:32px; grid-template-columns:1fr; gap:22px; }.competition-copy p { max-width:760px; }.competition-identities { max-width:680px; width:100%; margin-inline:auto; } }
+@media(max-width:700px) { .competition-section { margin-inline:22px; margin-bottom:32px; padding-block:28px; }.competition-copy h2 { font-size:29px; } }
+@media(max-width:440px) { .competition-identities { gap:2px; }.competition-mark { height:95px; }.competition-city img { width:76px; }.competition-brida img { width:102px; }.competition-inovboyo img { width:108px; }.competition-identity>span { font-size:9px; } }

@@ -1,0 +1,41 @@
+/* The supplied square SVG has empty space above and below its artwork.
+   Keep the file intact and fit the full mark into the navigation. */
+.brand.brand-logo-only {
+  position: relative;
+  display: block;
+  flex: 0 0 132px;
+  width: 132px;
+  height: 80px;
+  overflow: hidden;
+}
+.brand.brand-logo-only img {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  transform: translateY(-50%);
+}
+.sidebar-brand .brand.brand-logo-only {
+  flex-basis: 124px;
+  width: 124px;
+  height: 76px;
+}
+.public-footer .brand.brand-logo-only {
+  flex-basis: 116px;
+  width: 116px;
+  height: 70px;
+}
+:root[data-theme='dark'] .brand.brand-logo-only {
+  background: #edf3e6;
+  border-radius: 6px;
+}
+@media (max-width: 540px) {
+  .public-header .brand.brand-logo-only {
+    flex-basis: 118px;
+    width: 118px;
+    height: 72px;
+  }
+}

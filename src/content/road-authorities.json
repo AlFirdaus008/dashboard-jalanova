@@ -1,0 +1,457 @@
+{
+  "version": 2,
+  "reviewedAt": "2026-11-01",
+  "coverage": "15 nama ruas pada notebook Jalanova; bukan inventaris seluruh jalan Surabaya",
+  "method": "Klasifikasi tiga status per ruas proyek: Nasional, Provinsi, dan Kota. Sumber penetapan dan dokumen pendukung dicatat terpisah dari verifikasi lokasi titik.",
+  "limitation": "Koordinat titik notebook disimulasikan pada OSM. Belum ada pencocokan spasial dengan geometri status jalan resmi; seluruh titik perlu verifikasi segmen.",
+  "sources": [
+    {
+      "id": "rtrw-2025",
+      "title": "Perda Kota Surabaya No. 3 Tahun 2025 — RTRW 2025–2045",
+      "publisher": "JDIH Kota Surabaya",
+      "date": "2025-04-17",
+      "kind": "Peraturan dan dokumen perencanaan",
+      "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf",
+      "landingUrl": "https://jdih.surabaya.go.id/peraturan/4620",
+      "description": "Pasal 11, Lampiran V dan tabel program halaman PDF 252–255. Menghubungkan nama ruas, fungsi jalan, program penyelenggaraan, pelaksana, dan pendanaan. Interpretasi kewenangan tetap perlu lampiran SK status jalan."
+    },
+    {
+      "id": "national-status-2022",
+      "title": "Kepmen PUPR No. 1688/KPTS/M/2022 — Penetapan Ruas Jalan Nasional",
+      "publisher": "Direktorat Jenderal Bina Marga",
+      "date": "2022",
+      "kind": "Rujukan penetapan nasional",
+      "url": "https://binamarga.pu.go.id/index.php/peraturan/dokumen/keputusan-menteri-pupr-nomor-430kptsm2022-tentang-penetapan-ruas-jalan-menurut-statusnya-sebagai-jalan-nasional",
+      "description": "Lampiran Jawa Timur, halaman PDF 64: baris 27 Tanjung Perak 00914K (3,69 km), baris 38 Kenjeran 01112K (1,83 km). Tabel dan peta halaman 63 sudah diperiksa. Nama Perak Timur dirujuk secara langsung melalui tabel RKPD 2024 pada detail ruas. Slug URL berbeda dari nomor pada dokumen.",
+      "landingUrl": "https://binamarga.pu.go.id/index.php/peraturan/detail/keputusan-menteri-pupr-nomor-430kptsm2022-tentang-penetapan-ruas-jalan-menurut-statusnya-sebagai-jalan-nasional"
+    },
+    {
+      "id": "ahmad-yani-2024",
+      "title": "Audiensi KAI Daop 8 dan pembahasan JPO Jalan Ahmad Yani",
+      "publisher": "Pemerintah Kota Surabaya",
+      "date": "2024-07-30",
+      "kind": "Keterangan resmi",
+      "url": "https://www.surabaya.go.id/id/berita/22712/audiensi-dengan-kai-daop-8-wali-kota-eri-cahyadi-bahas-pembangunan-saluran-air-hingga-jpo-jalan-ahmad-yani",
+      "description": "Keterangan izin JPO menyebut posisi melintasi jalan nasional. Konteks ini dibandingkan dengan RTRW 2025; kewenangan seluruh koridor tidak digeneralisasi."
+    },
+    {
+      "id": "dishub-2023",
+      "title": "Renja Dinas Perhubungan Jawa Timur 2023",
+      "publisher": "Dinas Perhubungan Provinsi Jawa Timur",
+      "date": "2023",
+      "kind": "Dokumen perencanaan pendukung",
+      "url": "https://www.dishub.jatimprov.go.id/wp-content/uploads/2023/07/RENJA-2023-dishub-jatim.pdf",
+      "description": "Bab II halaman II.190, kegiatan 362–368: lokasi Mastrip, Karangpilang, Surabaya disebut berada di ruas jalan provinsi. Akses dokumen dapat dibatasi server penerbit."
+    },
+    {
+      "id": "channels",
+      "title": "Layanan pengaduan masyarakat Surabaya",
+      "publisher": "PPID Kota Surabaya",
+      "date": "",
+      "kind": "Kanal layanan",
+      "url": "https://ppid.surabaya.go.id/layanan-pengaduan-masyarakat",
+      "description": "Akses kanal WargaKu dan pengaduan di luar kewenangan pemerintah kota. Dashboard hanya menyediakan tautan layanan."
+    },
+    {
+      "id": "rkpd-2024",
+      "title": "Perwali Surabaya No. 69 Tahun 2023 — RKPD Kota Surabaya 2024",
+      "publisher": "JDIH Kota Surabaya",
+      "date": "2023",
+      "kind": "Tabel status jalan pada dokumen pemerintah",
+      "url": "https://jdih.surabaya.go.id/uploads/peraturan/2023perwali3578069.pdf",
+      "description": "Tabel II.182 Derajat Kejenuhan Lalu Lintas Kota Surabaya 2018–2022, halaman PDF 250 (II-183), baris 39: Jl. Perak Timur, kolom Kewenangan nasional. Tabel diperiksa dari teks dan raster PDF resmi."
+    }
+  ],
+  "roads": [
+    {
+      "roadId": "SBY-01",
+      "authority": "national",
+      "evidence": "report",
+      "officialName": "Jalan Ahmad Yani",
+      "districts": "Gayungan; Wonokromo",
+      "owner": "Pemerintah pusat / Kementerian PU",
+      "spatiallyVerified": false,
+      "scope": "Jalur utama Jalan Ahmad Yani di Surabaya diklasifikasikan sebagai jalan Nasional pada dashboard.",
+      "note": "Keterangan Pemkot Surabaya 30 Juli 2024 tentang JPO menyebut jalur ini sebagai jalan nasional dan menjelaskan perizinan kepada Balai Besar Jalan Nasional. Dokumen RTRW tetap disertakan sebagai konteks perencanaan. Frontage dan titik pekerjaan perlu diperiksa sesuai lokasinya.",
+      "sources": [
+        {
+          "sourceId": "ahmad-yani-2024",
+          "locator": "Penjelasan izin JPO kepada Balai Besar Jalan Nasional"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Lampiran V no. 2, halaman PDF 204",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=204"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Program 2.1.1.6, halaman PDF 255",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=255"
+        }
+      ]
+    },
+    {
+      "roadId": "SBY-02",
+      "authority": "city",
+      "evidence": "planning",
+      "officialName": "Jalan Raya Darmo",
+      "districts": "Tegalsari; Wonokromo",
+      "owner": "Pemkot Surabaya / DSDABM",
+      "spatiallyVerified": false,
+      "aliasNeedsReview": false,
+      "scope": "Jalan Raya Darmo, Tegalsari; Wonokromo. Lampiran V nomor 101 mencantumkan ruas sebagai arteri sekunder.",
+      "note": "Klasifikasi Kota mengacu pada daftar ruas dan program Penyelenggaraan Jalan Kota dalam RTRW Surabaya 2025, halaman PDF 254. Konfirmasi dengan lampiran SK status jalan dan batas awal/akhir ruas sebelum penugasan.",
+      "sources": [
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Lampiran V no. 101, halaman PDF 207",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=207"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Program 2.1.1 Penyelenggaraan Jalan Kota, halaman PDF 254",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=254"
+        }
+      ]
+    },
+    {
+      "roadId": "SBY-03",
+      "authority": "city",
+      "evidence": "planning",
+      "officialName": "Jalan Mayjend Sungkono",
+      "districts": "Dukuh Pakis; Sawahan; Sukomanunggal; Wonokromo",
+      "owner": "Pemkot Surabaya / DSDABM",
+      "spatiallyVerified": false,
+      "aliasNeedsReview": false,
+      "scope": "Jalan Mayjend Sungkono, Dukuh Pakis; Sawahan; Sukomanunggal; Wonokromo. Lampiran V nomor 73 mencantumkan ruas sebagai arteri sekunder.",
+      "note": "Klasifikasi Kota mengacu pada daftar ruas dan program Penyelenggaraan Jalan Kota dalam RTRW Surabaya 2025, halaman PDF 254. Konfirmasi dengan lampiran SK status jalan dan batas awal/akhir ruas sebelum penugasan.",
+      "sources": [
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Lampiran V no. 73, halaman PDF 206",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=206"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Program 2.1.1 Penyelenggaraan Jalan Kota, halaman PDF 254",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=254"
+        }
+      ]
+    },
+    {
+      "roadId": "SBY-04",
+      "authority": "city",
+      "evidence": "planning",
+      "officialName": "Jalan Hr. Muhammad",
+      "districts": "Dukuh Pakis; Sukomanunggal",
+      "owner": "Pemkot Surabaya / DSDABM",
+      "spatiallyVerified": false,
+      "aliasNeedsReview": false,
+      "scope": "Jalan Hr. Muhammad, Dukuh Pakis; Sukomanunggal. Lampiran V nomor 30 mencantumkan ruas sebagai arteri sekunder.",
+      "note": "Klasifikasi Kota mengacu pada daftar ruas dan program Penyelenggaraan Jalan Kota dalam RTRW Surabaya 2025, halaman PDF 254. Konfirmasi dengan lampiran SK status jalan dan batas awal/akhir ruas sebelum penugasan.",
+      "sources": [
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Lampiran V no. 30, halaman PDF 205",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=205"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Program 2.1.1 Penyelenggaraan Jalan Kota, halaman PDF 254",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=254"
+        }
+      ]
+    },
+    {
+      "roadId": "SBY-05",
+      "authority": "city",
+      "evidence": "planning",
+      "officialName": "Jalan Kertajaya",
+      "districts": "Gubeng; Mulyorejo; Wonokromo",
+      "owner": "Pemkot Surabaya / DSDABM",
+      "spatiallyVerified": false,
+      "aliasNeedsReview": false,
+      "scope": "Jalan Kertajaya, Gubeng; Mulyorejo; Wonokromo. Lampiran V nomor 50 mencantumkan ruas sebagai arteri sekunder.",
+      "note": "Klasifikasi Kota mengacu pada daftar ruas dan program Penyelenggaraan Jalan Kota dalam RTRW Surabaya 2025, halaman PDF 254. Konfirmasi dengan lampiran SK status jalan dan batas awal/akhir ruas sebelum penugasan.",
+      "sources": [
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Lampiran V no. 50, halaman PDF 205",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=205"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Program 2.1.1 Penyelenggaraan Jalan Kota, halaman PDF 254",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=254"
+        }
+      ]
+    },
+    {
+      "roadId": "SBY-06",
+      "authority": "city",
+      "evidence": "planning",
+      "officialName": "Jalan Rungkut Industri",
+      "districts": "Rungkut; Tenggilis Mejoyo",
+      "owner": "Pemkot Surabaya / DSDABM",
+      "spatiallyVerified": false,
+      "aliasNeedsReview": true,
+      "scope": "Jalan Rungkut Industri, Rungkut; Tenggilis Mejoyo. Lampiran V nomor 142 mencantumkan ruas sebagai arteri sekunder.",
+      "note": "Klasifikasi Kota mengacu pada daftar ruas dan program Penyelenggaraan Jalan Kota dalam RTRW Surabaya 2025, halaman PDF 254. Nama di notebook berbeda dari nama resmi; padanan ruas perlu diperiksa. Konfirmasi dengan lampiran SK status jalan dan batas awal/akhir ruas sebelum penugasan.",
+      "sources": [
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Lampiran V no. 142, halaman PDF 208",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=208"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Program 2.1.1 Penyelenggaraan Jalan Kota, halaman PDF 254",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=254"
+        }
+      ]
+    },
+    {
+      "roadId": "SBY-07",
+      "authority": "national",
+      "evidence": "document",
+      "officialName": "Jalan Kenjeran",
+      "districts": "Simokerto; Tambaksari; Bulak; Mulyorejo",
+      "owner": "Pemerintah pusat / Kementerian PU",
+      "spatiallyVerified": false,
+      "scope": "Ruas nasional Jalan Kenjeran, kode 01112K, panjang 1,83 km, tercantum pada Kepmen PUPR 1688/2022.",
+      "note": "Klasifikasi Nasional mengacu pada ruas 01112K. RTRW 2025 juga mencantumkan nama Kenjeran pada jaringan arteri sekunder. Kategori ini digunakan untuk koridor nasional dalam proyek; batas segmen harus dicocokkan sebelum penugasan titik lapangan.",
+      "sources": [
+        {
+          "sourceId": "national-status-2022",
+          "locator": "Halaman PDF 64, tabel Jawa Timur baris 38; kode 01112K; 1,83 km",
+          "url": "https://binamarga.pu.go.id/index.php/peraturan/dokumen/keputusan-menteri-pupr-nomor-430kptsm2022-tentang-penetapan-ruas-jalan-menurut-statusnya-sebagai-jalan-nasional#page=64"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Pasal 11 ayat (3) huruf a angka 10",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=28"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Lampiran V no. 49",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=205"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Program penyelenggaraan jalan nasional, halaman PDF 253",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=253"
+        }
+      ]
+    },
+    {
+      "roadId": "SBY-08",
+      "authority": "city",
+      "evidence": "planning",
+      "officialName": "Jalan Raya Dupak",
+      "districts": "Bubutan; Krembangan",
+      "owner": "Pemkot Surabaya / DSDABM",
+      "spatiallyVerified": false,
+      "aliasNeedsReview": true,
+      "scope": "Jalan Raya Dupak, Bubutan; Krembangan. Lampiran V nomor 105 mencantumkan ruas sebagai arteri sekunder.",
+      "note": "Klasifikasi Kota mengacu pada daftar ruas dan program Penyelenggaraan Jalan Kota dalam RTRW Surabaya 2025, halaman PDF 254. Nama di notebook berbeda dari nama resmi; padanan ruas perlu diperiksa. Konfirmasi dengan lampiran SK status jalan dan batas awal/akhir ruas sebelum penugasan.",
+      "sources": [
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Lampiran V no. 105, halaman PDF 207",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=207"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Program 2.1.1 Penyelenggaraan Jalan Kota, halaman PDF 254",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=254"
+        }
+      ]
+    },
+    {
+      "roadId": "SBY-09",
+      "authority": "provincial",
+      "evidence": "planning",
+      "officialName": "Jalan Mastrip",
+      "districts": "Karang Pilang; Wiyung",
+      "owner": "Pemprov Jawa Timur / Dinas PU Bina Marga",
+      "spatiallyVerified": false,
+      "scope": "Mastrip di Karang Pilang dan Wiyung disebut dalam program Penyelenggaraan Jalan Provinsi.",
+      "note": "Rujukan perencanaan menyebut APBD Provinsi dan Dinas Bina Marga Provinsi Jawa Timur. Cocokkan titik lapangan dengan lampiran SK status provinsi terbaru dan batas ruas.",
+      "sources": [
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Pasal 11 ayat (4) huruf a angka 3",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=28"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Program 3.1.1 Penyelenggaraan Jalan Provinsi, halaman PDF 255",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=255"
+        },
+        {
+          "sourceId": "dishub-2023",
+          "locator": "Bab II halaman tercetak II.190, usulan kegiatan 362–368 menyebut Mastrip sebagai ruas jalan provinsi"
+        }
+      ]
+    },
+    {
+      "roadId": "SBY-10",
+      "authority": "city",
+      "evidence": "planning",
+      "officialName": "Jalan Dr. Ir. H. Soekarno",
+      "districts": "Gunung Anyar; Mulyorejo; Rungkut; Sukolilo",
+      "owner": "Pemkot Surabaya / DSDABM",
+      "spatiallyVerified": false,
+      "aliasNeedsReview": false,
+      "scope": "Jalan Dr. Ir. H. Soekarno, Gunung Anyar; Mulyorejo; Rungkut; Sukolilo. Lampiran V nomor 21 mencantumkan ruas sebagai arteri sekunder.",
+      "note": "Klasifikasi Kota mengacu pada daftar ruas dan program Penyelenggaraan Jalan Kota dalam RTRW Surabaya 2025, halaman PDF 254. Konfirmasi dengan lampiran SK status jalan dan batas awal/akhir ruas sebelum penugasan.",
+      "sources": [
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Lampiran V no. 21, halaman PDF 204",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=204"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Program 2.1.1 Penyelenggaraan Jalan Kota, halaman PDF 254",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=254"
+        }
+      ]
+    },
+    {
+      "roadId": "SBY-11",
+      "authority": "city",
+      "evidence": "planning",
+      "officialName": "Jalan Basuki Rahmat",
+      "districts": "Genteng; Tegalsari",
+      "owner": "Pemkot Surabaya / DSDABM",
+      "spatiallyVerified": false,
+      "aliasNeedsReview": false,
+      "scope": "Jalan Basuki Rahmat, Genteng; Tegalsari. Lampiran V nomor 9 mencantumkan ruas sebagai arteri sekunder.",
+      "note": "Klasifikasi Kota mengacu pada daftar ruas dan program Penyelenggaraan Jalan Kota dalam RTRW Surabaya 2025, halaman PDF 254. Konfirmasi dengan lampiran SK status jalan dan batas awal/akhir ruas sebelum penugasan.",
+      "sources": [
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Lampiran V no. 9, halaman PDF 204",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=204"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Program 2.1.1 Penyelenggaraan Jalan Kota, halaman PDF 254",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=254"
+        }
+      ]
+    },
+    {
+      "roadId": "SBY-12",
+      "authority": "city",
+      "evidence": "planning",
+      "officialName": "Jalan Tunjungan",
+      "districts": "Genteng; Tegalsari",
+      "owner": "Pemkot Surabaya / DSDABM",
+      "spatiallyVerified": false,
+      "aliasNeedsReview": false,
+      "scope": "Jalan Tunjungan, Genteng; Tegalsari. Lampiran V nomor 161 mencantumkan ruas sebagai arteri sekunder.",
+      "note": "Klasifikasi Kota mengacu pada daftar ruas dan program Penyelenggaraan Jalan Kota dalam RTRW Surabaya 2025, halaman PDF 254. Konfirmasi dengan lampiran SK status jalan dan batas awal/akhir ruas sebelum penugasan.",
+      "sources": [
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Lampiran V no. 161, halaman PDF 209",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=209"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Program 2.1.1 Penyelenggaraan Jalan Kota, halaman PDF 254",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=254"
+        }
+      ]
+    },
+    {
+      "roadId": "SBY-13",
+      "authority": "national",
+      "evidence": "document",
+      "officialName": "Jalan Perak Timur",
+      "districts": "Krembangan; Pabean Cantian",
+      "owner": "Pemerintah pusat / Kementerian PU",
+      "spatiallyVerified": false,
+      "aliasNeedsReview": false,
+      "scope": "Jalan Perak Timur di kawasan Tanjung Perak, Surabaya, tercantum berstatus nasional pada tabel RKPD Kota Surabaya 2024.",
+      "note": "RKPD 2024 menyebut nama Perak Timur secara eksplisit. Kepmen PUPR 1688/2022 mencantumkan koridor Tanjung Perak dengan kode 00914K sepanjang 3,69 km. Titik pekerjaan dan akses internal pelabuhan perlu dicocokkan dengan batas ruas yang dikelola.",
+      "sources": [
+        {
+          "sourceId": "rkpd-2024",
+          "locator": "Tabel II.182, halaman PDF 250 (II-183), baris 39: Jl. Perak Timur, kewenangan nasional",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2023perwali3578069.pdf#page=250"
+        },
+        {
+          "sourceId": "national-status-2022",
+          "locator": "Halaman PDF 64, tabel Jawa Timur baris 27; kode 00914K; 3,69 km",
+          "url": "https://binamarga.pu.go.id/index.php/peraturan/dokumen/keputusan-menteri-pupr-nomor-430kptsm2022-tentang-penetapan-ruas-jalan-menurut-statusnya-sebagai-jalan-nasional#page=64"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Pasal 11 ayat (3) huruf a angka 11",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=28"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Program penyelenggaraan jalan nasional, halaman PDF 253",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=253"
+        }
+      ]
+    },
+    {
+      "roadId": "SBY-14",
+      "authority": "city",
+      "evidence": "planning",
+      "officialName": "Jalan Raya Menganti Wiyung",
+      "districts": "Wiyung",
+      "owner": "Pemkot Surabaya / DSDABM",
+      "spatiallyVerified": false,
+      "aliasNeedsReview": true,
+      "scope": "Jalan Raya Menganti Wiyung, Wiyung. Lampiran V nomor 127 mencantumkan ruas sebagai arteri sekunder.",
+      "note": "Klasifikasi Kota mengacu pada daftar ruas dan program Penyelenggaraan Jalan Kota dalam RTRW Surabaya 2025, halaman PDF 254. Nama di notebook berbeda dari nama resmi; padanan ruas perlu diperiksa. Konfirmasi dengan lampiran SK status jalan dan batas awal/akhir ruas sebelum penugasan.",
+      "sources": [
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Lampiran V no. 127, halaman PDF 208",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=208"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Program 2.1.1 Penyelenggaraan Jalan Kota, halaman PDF 254",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=254"
+        }
+      ]
+    },
+    {
+      "roadId": "SBY-15",
+      "authority": "city",
+      "evidence": "planning",
+      "officialName": "Jalan Raya Manukan Kulon",
+      "districts": "Tandes",
+      "owner": "Pemkot Surabaya / DSDABM",
+      "spatiallyVerified": false,
+      "aliasNeedsReview": true,
+      "scope": "Jalan Raya Manukan Kulon, Tandes. Lampiran V nomor 116 mencantumkan ruas sebagai arteri sekunder.",
+      "note": "Klasifikasi Kota mengacu pada daftar ruas dan program Penyelenggaraan Jalan Kota dalam RTRW Surabaya 2025, halaman PDF 254. Nama di notebook berbeda dari nama resmi; padanan ruas perlu diperiksa. Konfirmasi dengan lampiran SK status jalan dan batas awal/akhir ruas sebelum penugasan.",
+      "sources": [
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Lampiran V no. 116, halaman PDF 208",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=208"
+        },
+        {
+          "sourceId": "rtrw-2025",
+          "locator": "Program 2.1.1 Penyelenggaraan Jalan Kota, halaman PDF 254",
+          "url": "https://jdih.surabaya.go.id/uploads/peraturan/2025perda3578003.pdf#page=254"
+        }
+      ]
+    }
+  ],
+  "classificationSummary": {
+    "national": 3,
+    "provincial": 1,
+    "city": 11
+  }
+}

@@ -24,19 +24,28 @@ const accounts=[
   {email:'userwarga@demo.jalanova.invalid',name:'Warga Jalanova',role:'citizen',agency:null},
   {email:'usergovernence@demo.jalanova.invalid',name:'Petugas Jalanova',role:'stakeholder',agency:null},
 ];
-let client;
+let client,stage='start';
 try {
-  if(!process.argv.includes('--provision'))throw Error('explicit-provision-required');
+  const resetPasswords=process.argv.includes('--reset-passwords');
+  if(!resetPasswords && !process.argv.includes('--provision'))throw Error('explicit-provision-required');
   const input=await readHiddenJson();
   if(input.host!=='aws-0-eu-west-2.pooler.supabase.com' || typeof input.dbPassword!=='string' || typeof input.accountPassword!=='string')throw Error('invalid-input');
   const ca=fs.readFileSync(new URL('../supabase/certs/prod-ca-2021.crt',import.meta.url),'utf8');
   client=new pg.Client({host:input.host,port:5432,user:'postgres.kfevjvfmbsudfgahxmuj',database:'postgres',password:input.dbPassword,ssl:{rejectUnauthorized:true,ca},connectionTimeoutMillis:12000,statement_timeout:30000});
   input.dbPassword=undefined;
+  stage='connect';
   await client.connect();
+  stage='update-accounts';
   await client.query('begin');
   try {
     for(const account of accounts){
       const existing=await client.query('select id from auth.users where lower(email)=lower($1)',[account.email]);
+      if(resetPasswords){
+        if(!existing.rowCount)throw Error('account-missing');
+        await client.query("update auth.users set encrypted_password=extensions.crypt($2,extensions.gen_salt('bf')),updated_at=now() where id=$1",[existing.rows[0].id,input.accountPassword]);
+        await client.query('update public.profiles set role=$2,is_demo=false,agency=$3 where id=$1',[existing.rows[0].id,account.role,account.agency]);
+        continue;
+      }
       if(existing.rowCount)throw Error('account-already-exists');
       const inserted=await client.query(`insert into auth.users(instance_id,id,aud,role,email,encrypted_password,email_confirmed_at,raw_app_meta_data,raw_user_meta_data,created_at,updated_at,confirmation_token,recovery_token,email_change,email_change_token_new,email_change_token_current,reauthentication_token,is_sso_user,is_anonymous)
         values('00000000-0000-0000-0000-000000000000',gen_random_uuid(),'authenticated','authenticated',$1,extensions.crypt($2,extensions.gen_salt('bf')),now(),jsonb_build_object('provider','email','providers',jsonb_build_array('email')),jsonb_build_object('full_name',$3::text),now(),now(),'','','','','','',false,false) returning id`,[account.email,input.accountPassword,account.name]);
@@ -47,6 +56,7 @@ try {
     }
     await client.query('commit');
   } catch(error){await client.query('rollback');throw error;}
+  stage='verify-logins';
   const variables=Object.fromEntries(fs.readFileSync(new URL('../.env.local',import.meta.url),'utf8').split(/\r?\n/).filter(line=>line.includes('=')).map(line=>{const index=line.indexOf('=');return [line.slice(0,index),line.slice(index+1)];}));
   for(const account of accounts){
     const login=await fetch(variables.VITE_SUPABASE_URL+'/auth/v1/token?grant_type=password',{method:'POST',headers:{apikey:variables.VITE_SUPABASE_PUBLISHABLE_KEY,'Content-Type':'application/json'},body:JSON.stringify({email:account.email,password:input.accountPassword}),signal:AbortSignal.timeout(10000)});
@@ -59,9 +69,9 @@ try {
     await fetch(variables.VITE_SUPABASE_URL+'/auth/v1/logout?scope=local',{method:'POST',headers,signal:AbortSignal.timeout(10000)});
   }
   input.accountPassword=undefined;
-  console.log(JSON.stringify({created:accounts.length,loginsVerified:true,roles:['citizen','stakeholder'],passwordsStoredInRepository:false}));
+  console.log(JSON.stringify({created:resetPasswords?0:accounts.length,passwordsReset:resetPasswords?accounts.length:0,loginsVerified:true,roles:['citizen','stakeholder'],passwordsStoredInRepository:false}));
 } catch(error){
-  const allowed=['explicit-provision-required','invalid-input','account-already-exists','account-login-failed','unexpected-profile','cancelled'];
-  console.log(JSON.stringify({created:false,code:allowed.includes(error.message)?error.message:(error.code||'account-setup-failed')}));
+  const allowed=['explicit-provision-required','invalid-input','account-already-exists','account-missing','account-login-failed','unexpected-profile','cancelled'];
+  console.log(JSON.stringify({created:false,stage,code:allowed.includes(error.message)?error.message:(error.code||'account-setup-failed')}));
   process.exitCode=1;
 } finally {await client?.end().catch(()=>{});}

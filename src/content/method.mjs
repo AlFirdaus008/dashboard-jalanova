@@ -1,7 +1,7 @@
 export const DATA_SOURCES = [
   { id:'rdd', name:'RDD2022', scope:'3.745 citra dari 3 kelompok asal data', role:'2.993 citra latih, 387 validasi, dan 365 uji' },
   { id:'bpid', name:'BPID', scope:'161 citra beranotasi', role:'Penyesuaian model pada data lain; 24 citra uji' },
-  { id:'reports', name:'Pengaduan', scope:'850 laporan pada 15 ruas', role:'Menggabungkan laporan terkait dan memperkirakan tingkat kerusakan' },
+  { id:'reports', name:'Pengaduan', scope:'850 laporan simulasi pada 15 ruas', role:'Menggabungkan laporan terkait dan memperkirakan tingkat kerusakan' },
   { id:'traffic', name:'Lalu lintas', scope:'720 baris profil', role:'24 jam × 2 tipe hari × 15 ruas, untuk membandingkan waktu kerja' },
   { id:'cost', name:'AHSP & riwayat pekerjaan', scope:'8 item harga dan 40 riwayat', role:'Menghitung estimasi biaya dan lama pekerjaan' },
   { id:'roads', name:'Jaringan OpenStreetMap', scope:'4.748 segmen hasil ekspor', role:'Membentuk lokasi simulasi dan menampilkan jaringan jalan' },
@@ -26,7 +26,7 @@ export const PIPELINE_STEPS = [
   {
     id:'deduplication', number:'02', title:'Menggabungkan aduan tentang kejadian yang sama',
     description:'Isi laporan, nama ruas, jarak, dan waktu laporan dibandingkan agar satu kerusakan tidak dihitung berkali-kali.',
-    method:'Konfigurasi terpilih memakai radius 25 meter, kemiripan teks 0,6, dan selang waktu 168 jam. Hasilnya 659 titik dari 850 laporan.',
+    method:'Konfigurasi terpilih memakai radius 25 meter, kemiripan teks 0,6, dan selang waktu 168 jam. Hasilnya 659 titik dari 850 laporan simulasi.',
     note:'Koordinat dalam eksperimen dibentuk kembali pada jaringan OpenStreetMap. Peta ini belum menunjukkan koordinat asli setiap laporan.',
     figures:[
       { file:'kosakata_pengaduan.png', cell:53, title:'Kata yang muncul dalam aduan', caption:'Gambaran isi laporan melalui sebaran kata dan kata yang paling sering muncul.' },

@@ -80,9 +80,10 @@ try {
     const roads=await client.query('select count(*)::int as count from public.road_registry');
     const users=await client.query('select count(*)::int as count from public.profiles');
     const reports=await client.query('select count(*)::int as count from public.citizen_reports');
+    const demoAccounts=await client.query("select split_part(u.email,'@',1) as name,p.role,p.is_demo from auth.users u join public.profiles p on p.id=u.id where u.email in ('userwarga@demo.jalanova.invalid','usergovernence@demo.jalanova.invalid','usergovernance@demo.jalanova.invalid') order by name");
     const workBucket=await client.query("select public,file_size_limit from storage.buckets where id='report-work-evidence'");
     const workFunction=await client.query("select to_regprocedure('public.record_report_work(uuid,text,text,text,text,text,timestamp with time zone,timestamp with time zone,numeric,text,text)') is not null as ready");
-    console.log(JSON.stringify({connected:true,allTablesRls:rows.rows.length===4 && rows.rows.every(row=>row.relrowsecurity),privatePhotoBucket:bucket.rows[0]?.public===false,maxPhotoBytes:bucket.rows[0]?.file_size_limit,privateWorkBucket:workBucket.rows[0]?.public===false,maxWorkBytes:workBucket.rows[0]?.file_size_limit,workFunctionReady:workFunction.rows[0]?.ready,roadReferences:roads.rows[0].count,profileCount:users.rows[0].count,reportCount:reports.rows[0].count}));
+    console.log(JSON.stringify({connected:true,allTablesRls:rows.rows.length===4 && rows.rows.every(row=>row.relrowsecurity),privatePhotoBucket:bucket.rows[0]?.public===false,maxPhotoBytes:bucket.rows[0]?.file_size_limit,privateWorkBucket:workBucket.rows[0]?.public===false,maxWorkBytes:workBucket.rows[0]?.file_size_limit,workFunctionReady:workFunction.rows[0]?.ready,roadReferences:roads.rows[0].count,profileCount:users.rows[0].count,reportCount:reports.rows[0].count,demoAccounts:demoAccounts.rows}));
   }
   else if(process.argv.includes('--check'))console.log(JSON.stringify({connected:true,...existing.rows[0]}));
   else {

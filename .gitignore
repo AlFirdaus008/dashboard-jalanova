@@ -10,6 +10,14 @@ dist-ssr/
 .env.*
 !.env.example
 *.local
+.envrc
+.direnv/
+*.pem
+*.p12
+*.pfx
+*.key
+*credentials*.json
+*service-account*.json
 
 # Runtime, tooling & AI agent folders
 .sites-runtime/
@@ -20,6 +28,22 @@ artifacts/
 # Supabase local temp files
 supabase/.branches/
 supabase/.temp/
+
+# Local databases and backups
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.backup
+*.sql.gz
+
+# Test output and caches
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+.cache/
+*.tsbuildinfo
 
 # Logs
 *.log

@@ -25,6 +25,8 @@ fieldset:disabled { opacity:.65; }
 .access-links button,.preview-entry { font-size:11px; color:var(--green); }
 .preview-entry { display:inline-flex; gap:8px; align-items:center; margin-top:26px; text-decoration:underline; text-underline-offset:4px; }
 .workspace-account { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:0 0 14px; margin-bottom:25px; border-bottom:1px solid var(--line); font-size:12px; }
+.demo-report-badge { display:inline-flex; align-items:center; width:max-content; margin-left:8px; padding:3px 8px; border:1px solid #ddb98a; border-radius:999px; background:#fff3e5; color:#835326; font-size:10px; font-weight:600; line-height:1.4; vertical-align:middle; white-space:nowrap; }
+.demo-report-notice { margin:0 0 14px; padding:10px 13px; border:1px solid #e6c9a3; border-radius:10px; background:#fff6eb; color:#795535; font-size:12px; line-height:1.6; }
 .workspace-account-brand { display:flex; align-items:center; gap:18px; min-width:0; }
 .workspace-account-brand .brand.brand-logo-only { flex:0 0 124px; width:124px; height:68px; }
 .workspace-account-user>strong { display:block; font-weight:550; color:var(--ink); }

@@ -6,4 +6,4 @@ export const PROJECT_NAVIGATION = [
 
 // Fill in the project repository URL when supplied by the owner.
 export const PROJECT_DOCUMENTATION_URL = null;
-export const EXPERIMENT_DESCRIPTION = 'Skor prioritas, biaya, dan jadwal berasal dari pengujian notebook Jalanova. Lokasi titik masih simulasi dan sebagian ukuran merupakan perkiraan, sehingga hasilnya perlu diperiksa di lapangan sebelum digunakan untuk pekerjaan.';
+export const EXPERIMENT_DESCRIPTION = 'Peta ini memakai data simulasi dari notebook Jalanova. Dari data tersebut, sistem menyusun prioritas, perkiraan biaya, dan waktu kerja per ruas. Lokasi serta ukuran pekerjaan perlu dicek petugas sebelum pelaksanaan.';

@@ -1,9 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { appHref, dashboardHome, parseAppRoute } from '../src/lib/app-routes.mjs';
-import { validateCitizenReport, reportPhotoPath, loginEmail } from '../src/lib/citizen-reports.mjs';
+import { validateCitizenReport, reportPhotoPath, loginEmail, DEMO_REPORT_MARKER, isDemoReport, reportDescription } from '../src/lib/citizen-reports.mjs';
 import { submitCitizenReport } from '../src/lib/citizen-api.mjs';
 import { supabaseConfiguration } from '../src/lib/supabase.mjs';
+import { demoRoadPng } from '../scripts/demo-report-image.mjs';
 
 test('information pages are public unless explicitly opened from the workspace',()=>{
   for(const page of ['method','evaluation']){
@@ -39,6 +40,17 @@ test('citizen form requires a real coordinate pair, usable photo and explicit co
   assert(validateCitizenReport(values,{type:'image/svg+xml',size:100}).photo);
   assert(validateCitizenReport(values,{type:'image/jpeg',size:6*1024*1024}).photo);
   assert.throws(()=>reportPhotoPath('../','x','image/jpeg'));
+});
+test('example reports stay visibly marked and use valid small PNG illustrations',()=>{
+  const description=`${DEMO_REPORT_MARKER} Contoh laporan jalan rusak.`;
+  assert.equal(isDemoReport({description}),true);
+  assert.equal(isDemoReport({description:'Laporan warga biasa.'}),false);
+  assert.equal(reportDescription({description}),'Contoh laporan jalan rusak.');
+  for(let variant=0;variant<3;variant++){
+    const photo=demoRoadPng(variant);
+    assert.deepEqual([...photo.subarray(0,8)],[137,80,78,71,13,10,26,10]);
+    assert(photo.length>1000 && photo.length<5*1024*1024);
+  }
 });
 test('submission uploads only a draft and retries the same report without duplicating a received record',async()=>{
   const id='11111111-1111-4111-8111-111111111111',userId='22222222-2222-4222-8222-222222222222';

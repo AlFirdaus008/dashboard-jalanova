@@ -11,6 +11,14 @@
 .method-page .dataset-table tbody th svg { color:var(--green); flex-shrink:0; }
 .method-page .dataset-table tbody th strong { font-weight:500; }
 .method-page .method-two-columns { grid-template-columns:1fr 1fr; gap:36px; }
+.method-data-details { align-self:start; }
+.method-data-details summary { display:flex; align-items:center; gap:10px; color:var(--ink); font-size:16px; font-weight:500; cursor:pointer; list-style:none; }
+.method-data-details summary::-webkit-details-marker { display:none; }
+.method-data-details summary svg { color:var(--green); flex-shrink:0; }
+.method-data-details summary::after { content:'+'; margin-left:auto; color:var(--green); font-size:21px; font-weight:400; line-height:1; }
+.method-data-details[open] summary::after { content:'−'; }
+.method-data-details summary:hover { color:var(--green); }
+.method-data-details[open] summary { margin-bottom:14px; }
 .method-data-note { font-size:12px; color:var(--muted); border-left:2px solid var(--green); padding-left:16px; line-height:1.9; margin-top:24px; }
 .notebook-pipeline { border-top:1px solid var(--line); }
 .notebook-step { border-bottom:1px solid var(--line); }

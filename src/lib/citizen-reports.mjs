@@ -4,6 +4,9 @@ export const URGENCY = {unassessed:'Belum ditentukan',routine:'Rutin',priority:'
 export const NEXT_STATUSES = {received:['reviewing','rejected'],reviewing:['reviewing','scheduled','rejected'],scheduled:['scheduled','in_progress','reviewing'],in_progress:['in_progress','resolved','reviewing'],resolved:['reviewing'],rejected:['reviewing']};
 export const PHOTO_BUCKET = 'citizen-report-photos';
 export const PHOTO_LIMIT = 5 * 1024 * 1024;
+export const DEMO_REPORT_MARKER = '[JALANOVA_DATA_DEMO]';
+export function isDemoReport(report) { return typeof report?.description === 'string' && report.description.startsWith(DEMO_REPORT_MARKER); }
+export function reportDescription(report) { return isDemoReport(report) ? report.description.slice(DEMO_REPORT_MARKER.length).trim() : report?.description || ''; }
 export function loginEmail(identifier) {
   const value=identifier.trim().toLowerCase();
   const localAccounts = {usergovernance:'usergovernance@demo.jalanova.invalid',usergovernence:'usergovernence@demo.jalanova.invalid',userwarga:'userwarga@demo.jalanova.invalid'};

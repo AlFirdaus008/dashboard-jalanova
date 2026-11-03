@@ -20,5 +20,6 @@
 .live-reports-note { border-top:1px solid var(--line); padding-top:12px; }
 .live-report-map-label { display:flex; align-items:center; gap:5px; }
 .live-report-map-label i { display:inline-block; width:10px; height:10px; border:2px solid #153f39; border-radius:50%; background:#fff; }
+.live-report-map-label.demo i { border-color:#a5643d; background:#fff0df; }
 @media(max-width:900px) { .live-reports-head { flex-direction:column; }.live-reports-actions { width:100%; }.live-reports-actions strong { margin-right:auto; text-align:left; } }
 @media(max-width:650px) { .live-reports-panel { padding:18px; }.live-reports-list { grid-template-columns:1fr; }.live-reports-list .live-urgency { display:none; } }

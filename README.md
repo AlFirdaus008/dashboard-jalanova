@@ -33,6 +33,17 @@ Status ruas menggunakan tiga kategori: **Nasional** (Ahmad Yani, Kenjeran, Perak
 
 Laporan yang dikirim warga muncul di antrean dan peta petugas dengan penanda berbeda dari titik eksperimen notebook. Petugas dapat mengubah status dan prioritas, mencatat waktu pekerjaan, biaya aktual, foto hasil, serta dokumen pengeluaran. Pelapor melihat catatan dan bukti itu di riwayat laporannya. Berkas bukti bersifat privat.
 
+### Laporan contoh di Supabase
+
+Untuk mencoba alur kedua dashboard, periksa rencana isi lalu simpan tiga laporan contoh:
+
+```sh
+node scripts/seed-demo-reports.mjs
+node scripts/seed-demo-reports.mjs --apply
+```
+
+Perintah kedua meminta kata sandi akun contoh tanpa menampilkannya. Akun `userwarga` membuat laporan melalui API yang sama dengan formulir warga; akun petugas `usergovernence` memperbarui status pada dua laporan. Ketiga laporan memiliki ilustrasi jalan bertanda **DEMO**, lokasi simulasi, dan label **Data demo** pada daftar, peta, dan detail. Skrip memakai ID tetap sehingga aman dijalankan ulang tanpa menggandakan laporan. Foto tersimpan di Supabase Storage privat dan laporan di database. Data ini hanya untuk memperagakan alur, bukan dokumentasi kerusakan atau pekerjaan lapangan.
+
 Pelaporan warga melalui foto dan lokasi kini memakai Supabase Auth, database, dan Storage privat. Dua jenis akun adalah masyarakat dan pemangku kepentingan; pendaftaran biasa selalu menjadi masyarakat, sedangkan akses petugas diberikan pengelola. Konfigurasi proyek, langkah pengaturan URL email, dan persetujuan petugas dijelaskan dalam [SUPABASE_SETUP.md](SUPABASE_SETUP.md). Pekerjaan AI dan integrasi layanan berikutnya disimpan di [BACKLOG.md](BACKLOG.md).
 
 Tombol Dashboard membuka dua pilihan login yang bergeser saat dipilih. Setelah masuk, masyarakat mendapat dashboard sendiri untuk mengambil foto melalui formulir, melihat jumlah laporan, riwayat, status, dan catatan petugas. Petugas tetap memakai dashboard analisis beserta antrean laporan. Perubahan status sampai **Selesai** dan catatannya muncul di dashboard warga; halaman memeriksa pembaruan setiap 30 detik dan saat kembali aktif. Pemberitahuan email belum tersedia. Dua akun lokal `userwarga` dan `usergovernence` telah disiapkan di Supabase dengan sandi yang ditentukan pemilik, tanpa menaruh sandi di kode aplikasi. Akun `usergovernance` sebelumnya tetap menjadi pratinjau terbatas.

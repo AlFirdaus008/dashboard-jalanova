@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { appHref, dashboardHome, parseAppRoute } from '../src/lib/app-routes.mjs';
 import { validateCitizenReport, reportPhotoPath, loginEmail, DEMO_REPORT_MARKER, isDemoReport, reportAddress, reportDescription, reportEventNote } from '../src/lib/citizen-reports.mjs';
 import { submitCitizenReport } from '../src/lib/citizen-api.mjs';
-import { supabaseConfiguration } from '../src/lib/supabase.mjs';
+import { supabaseConfiguration, projectSupabaseConfiguration } from '../src/lib/supabase.mjs';
 import { demoRoadPng } from '../scripts/demo-report-image.mjs';
 
 test('information pages are public unless explicitly opened from the workspace',()=>{
@@ -27,6 +27,9 @@ test('browser configuration rejects secret credentials and never constructs a cl
   assert.equal(loginEmail('usergovernence'),'usergovernence@demo.jalanova.invalid');
   assert.equal(loginEmail('EXAMPLE@EXAMPLE.TEST'),'example@example.test');
   assert.equal(supabaseConfiguration({}).configured,false);
+  assert.equal(projectSupabaseConfiguration({}).configured,true);
+  assert.equal(projectSupabaseConfiguration({}).url,'https://kfevjvfmbsudfgahxmuj.supabase.co');
+  assert.equal(projectSupabaseConfiguration({VITE_SUPABASE_URL:'https://another.supabase.co'}).configured,false);
   for(const key of ['sb_secret_test','a-service-role-jwt'])assert.equal(supabaseConfiguration({VITE_SUPABASE_URL:'https://example.supabase.co',VITE_SUPABASE_PUBLISHABLE_KEY:key}).configured,false);
   assert.equal(supabaseConfiguration({VITE_SUPABASE_URL:'https://example.supabase.co',VITE_SUPABASE_PUBLISHABLE_KEY:'sb_publishable_test'}).configured,true);
 });

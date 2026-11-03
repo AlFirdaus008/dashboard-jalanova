@@ -1,0 +1,42 @@
+.scene-still-cars { display:none; }
+
+.scene-damage-alert {
+  animation:scene-alert-cycle 9s ease-in-out infinite;
+}
+
+.scene-damage-halo {
+  transform-box:fill-box;
+  transform-origin:center;
+  animation:scene-damage-pulse 2.4s ease-out infinite;
+}
+
+.scene-damage-popover {
+  transform-box:fill-box;
+  transform-origin:center bottom;
+  animation:scene-popup-cycle 9s ease-in-out infinite;
+}
+
+@keyframes scene-alert-cycle {
+  0%, 8%, 90%, 100% { opacity:0; }
+  15%, 78% { opacity:1; }
+}
+
+@keyframes scene-popup-cycle {
+  0%, 8%, 90%, 100% { opacity:0; transform:translateY(8px) scale(.92); }
+  15%, 78% { opacity:1; transform:translateY(0) scale(1); }
+}
+
+@keyframes scene-damage-pulse {
+  0% { opacity:.3; transform:scale(.7); }
+  75%, 100% { opacity:0; transform:scale(1.8); }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .scene-moving-car { display:none; }
+  .scene-still-cars { display:block; }
+  .scene-damage-alert, .scene-damage-halo, .scene-damage-popover {
+    animation:none;
+    opacity:1;
+  }
+  .scene-damage-halo, .scene-damage-popover { transform:none; }
+}

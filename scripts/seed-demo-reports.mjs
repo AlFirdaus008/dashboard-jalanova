@@ -8,9 +8,9 @@ import { submitCitizenReport } from '../src/lib/citizen-api.mjs';
 import { DEMO_REPORT_MARKER, PHOTO_BUCKET, isDemoReport } from '../src/lib/citizen-reports.mjs';
 
 const examples = [
-  { roadId:'SBY-01', damage:'Pothole', photo:0, stage:'received', description:'Contoh aduan: terlihat lubang di jalur kendaraan. Mohon petugas memeriksa lokasi dan menilai kebutuhan perbaikannya.' },
-  { roadId:'SBY-11', damage:'Rutting/Depression', photo:2, stage:'reviewing', description:'Contoh aduan: permukaan jalan tampak turun dan tidak rata. Kendaraan perlu melambat saat melewati bagian ini.' },
-  { roadId:'SBY-13', damage:'Longitudinal Crack', photo:1, stage:'scheduled', description:'Contoh aduan: tampak retak memanjang pada permukaan jalan. Mohon penanganan setelah kondisi lokasi diperiksa.' },
+  { roadId:'SBY-01', damage:'Pothole', photo:0, stage:'received', description:'Terlihat lubang di jalur kendaraan. Mohon petugas memeriksa lokasi dan menilai kebutuhan perbaikannya.' },
+  { roadId:'SBY-11', damage:'Rutting/Depression', photo:2, stage:'reviewing', description:'Permukaan jalan tampak turun dan tidak rata. Kendaraan perlu melambat saat melewati bagian ini.' },
+  { roadId:'SBY-13', damage:'Longitudinal Crack', photo:1, stage:'scheduled', description:'Tampak retak memanjang pada permukaan jalan. Mohon penanganan setelah kondisi lokasi diperiksa.' },
 ];
 
 function readEnv() {
@@ -71,8 +71,8 @@ async function advance(client, report, example) {
     if (result.error) { const failure=Error('demo-status-update-failed'); failure.detail={code:result.error.code,message:result.error.message}; throw failure; }
     report = result.data;
   };
-  if (report.status === 'received') await update('reviewing', example.stage === 'scheduled' ? 'urgent' : 'priority', 'Data demo: petugas contoh sedang meninjau foto dan titik laporan.');
-  if (example.stage === 'scheduled' && report.status === 'reviewing') await update('scheduled', 'urgent', 'Data demo: jadwal contoh dicatat untuk memperlihatkan perubahan status. Belum ada pekerjaan lapangan.');
+  if (report.status === 'received') await update('reviewing', example.stage === 'scheduled' ? 'urgent' : 'priority', 'Foto dan titik laporan sedang ditinjau.');
+  if (example.stage === 'scheduled' && report.status === 'reviewing') await update('scheduled', 'urgent', 'Jadwal penanganan dicatat. Pekerjaan lapangan belum dimulai.');
   return report;
 }
 
@@ -102,7 +102,7 @@ async function run() {
       const photo = new File([demoRoadPng(example.photo)], `ilustrasi-demo-${example.roadId}.png`, {type:'image/png'});
       const report = await submitCitizenReport(citizen, {
         id:example.id, userId:user.id, photo,
-        values:{roadName:example.roadName,address:`Titik contoh pada ${example.roadName}, Surabaya. Bukan lokasi kerusakan nyata.`,description:`${DEMO_REPORT_MARKER} ${example.description}`,latitude:String(example.coordinates[1]),longitude:String(example.coordinates[0]),contact:''},
+        values:{roadName:example.roadName,address:`${example.roadName}, Surabaya.`,description:`${DEMO_REPORT_MARKER} ${example.description}`,latitude:String(example.coordinates[1]),longitude:String(example.coordinates[0]),contact:''},
       });
       if (!isDemoReport(report)) throw Error('existing-report-id-mismatch');
       const current = await advance(staff,report,example);

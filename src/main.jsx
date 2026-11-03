@@ -39,6 +39,7 @@ import { damageNames, treatments, triageNames, triageColors, rupiah, number, com
 import './navigation.css';
 import './site-header.css';
 import './design-refresh.css';
+import './palette.css';
 
 const NAV = [
   ['dashboard', 'Peta kerusakan', MapPinned], ['authority', 'Kewenangan jalan', ShieldCheck], ['priority', 'Prioritas penanganan', ListOrdered],
@@ -112,7 +113,7 @@ function MapView({ sites, selected, onSelect, roads, liveReports = [], onLiveSel
     L.control.scale({ position: 'bottomleft', imperial: false }).addTo(map);
     const tile = L.tileLayer(`https://{s}.basemaps.cartocdn.com/${resolved === 'dark' ? 'dark_all' : 'light_all'}/{z}/{x}/{y}{r}.png`, { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>' }).addTo(map);
     tile.on('tileerror', () => setTileIssue(true)); tileRef.current = tile;
-    roadsLayerRef.current = L.geoJSON(roads, { style: { color: resolved === 'dark' ? '#50695c' : '#a2b9a8', weight: 1.3, opacity: .65 }, interactive: false }).addTo(map);
+    roadsLayerRef.current = L.geoJSON(roads, { style: { color: resolved === 'dark' ? '#5f879b' : '#a9c8d7', weight: 1.3, opacity: .65 }, interactive: false }).addTo(map);
     markersRef.current = L.layerGroup().addTo(map);
     liveMarkersRef.current = L.layerGroup().addTo(map);
     const observer = new ResizeObserver(() => map.invalidateSize()); observer.observe(el.current);
@@ -120,7 +121,7 @@ function MapView({ sites, selected, onSelect, roads, liveReports = [], onLiveSel
   }, [roads]);
   useEffect(() => {
     tileRef.current?.setUrl(`https://{s}.basemaps.cartocdn.com/${resolved === 'dark' ? 'dark_all' : 'light_all'}/{z}/{x}/{y}{r}.png`);
-    roadsLayerRef.current?.setStyle({ color: resolved === 'dark' ? '#50695c' : '#a2b9a8' });
+    roadsLayerRef.current?.setStyle({ color: resolved === 'dark' ? '#5f879b' : '#a9c8d7' });
     setTileIssue(false);
   }, [resolved]);
   useEffect(() => { const map = mapRef.current; if (!map || !tileRef.current) return; if (base === 'online') tileRef.current.addTo(map); else map.removeLayer(tileRef.current); }, [base]);
@@ -137,7 +138,7 @@ function MapView({ sites, selected, onSelect, roads, liveReports = [], onLiveSel
     liveReports.forEach(report=>{
       if(!Number.isFinite(report.latitude) || !Number.isFinite(report.longitude))return;
       const demo=isDemoReport(report);
-      const marker=L.circleMarker([report.latitude,report.longitude],{radius:7,color:demo?'#a5643d':'#153f39',weight:2.5,fillColor:demo?'#fff0df':'#ffffff',fillOpacity:1}).addTo(group);
+      const marker=L.circleMarker([report.latitude,report.longitude],{radius:7,color:demo?'#F7941D':'#012A44',weight:2.5,fillColor:demo?'#fff1de':'#00BFA5',fillOpacity:1}).addTo(group);
       const label=`${demo ? 'Laporan demo' : 'Laporan warga'}: ${report.road_name} | ${REPORT_STATUSES[report.status] || report.status}`;
       marker.bindTooltip(label,{direction:'top'});
       marker.on('click',()=>onLiveSelectRef.current?.(report));
@@ -204,7 +205,7 @@ function Priority({ data, filters, setFilters, sites, selected, setSelected }) {
   return <><PageHead title="Urutan prioritas penanganan" action={<DownloadButton sites={sites} />}>Urutan berdasarkan keparahan, lalu lintas, fungsi jalan, skala, dan aduan.</PageHead><div className="priority-explainer"><div><Eyebrow>BOBOT PRIORITAS</Eyebrow><h2>Dasar perhitungan<br />prioritas.</h2><p>Gabungan AHP 70% dan entropi 30%. Skor dan triase bersifat relatif terhadap seluruh titik dalam eksperimen.</p></div><div className="weight-bars">{criteria.map(([key, label]) => <div key={key}><span>{label}</span><div><i style={{ width: `${data.summary.bobot_prioritas[key] * 250}%` }} /></div><strong>{number(data.summary.bobot_prioritas[key] * 100, 1)}%</strong></div>)}</div></div><section className="panel"><div className="workspace-heading"><div><h2>Daftar titik prioritas</h2><p>Filter tidak mengubah skor hasil eksperimen.</p></div><span className="count-pill">{number(sites.length)} titik</span></div><Filters filters={filters} onChange={setFilters} roads={data.roads} full /><SiteTable sites={sites} selected={selected} onSelect={s => { setSelected(s); setDetailOpen(true); }} /></section><Notice subtle>Dari semua titik, 20% dengan skor tertinggi ditandai mendesak. Titik pada urutan berikutnya, sampai setengah dari daftar, masuk jadwal penanganan. Sisanya dipantau. Petugas tetap perlu memeriksa kondisi jalan.</Notice>{detailOpen && createPortal(<div className="detail-modal" role="dialog" aria-modal="true" aria-label="Detail keputusan titik" onClick={() => setDetailOpen(false)}><div onClick={e => e.stopPropagation()}><button className="modal-close icon-button" autoFocus aria-label="Tutup panel" onClick={() => setDetailOpen(false)}><X /></button><SiteDetail site={selected} schedules={data.schedules} reports={data.reports} standalone /></div></div>, document.body)}</>;
 }
 
-function HorizontalBars({ rows, color = '#337c65', money = false }) { const max = Math.max(1, ...rows.map(r => r.value)); return <div className="horizontal-bars">{rows.map(r => <div key={r.name}><div><span>{r.name}</span><strong>{money ? compactMoney(r.value) : number(r.value, 3)}</strong></div><div className="bar-rail"><i style={{ width: `${r.value / max * 100}%`, background: r.color || color }} /></div></div>)}</div>; }
+function HorizontalBars({ rows, color = '#00BFA5', money = false }) { const max = Math.max(1, ...rows.map(r => r.value)); return <div className="horizontal-bars">{rows.map(r => <div key={r.name}><div><span>{r.name}</span><strong>{money ? compactMoney(r.value) : number(r.value, 3)}</strong></div><div className="bar-rail"><i style={{ width: `${r.value / max * 100}%`, background: r.color || color }} /></div></div>)}</div>; }
 function Budget({ data, sites, filters, setFilters, preview = false }) {
   const total = summarizeSites(sites), all = sites.length === data.sites.length;
   const roads = groupSites(sites, 'road').sort((a, b) => b.sumMedians - a.sumMedians);

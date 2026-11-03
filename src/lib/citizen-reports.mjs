@@ -6,7 +6,20 @@ export const PHOTO_BUCKET = 'citizen-report-photos';
 export const PHOTO_LIMIT = 5 * 1024 * 1024;
 export const DEMO_REPORT_MARKER = '[JALANOVA_DATA_DEMO]';
 export function isDemoReport(report) { return typeof report?.description === 'string' && report.description.startsWith(DEMO_REPORT_MARKER); }
-export function reportDescription(report) { return isDemoReport(report) ? report.description.slice(DEMO_REPORT_MARKER.length).trim() : report?.description || ''; }
+export function reportAddress(report) {
+  const address=report?.address || '';
+  return isDemoReport(report) ? address.replace(/^Titik contoh pada\s+/i,'').replace(/\s*Bukan lokasi kerusakan nyata\.\s*$/i,'').trim() : address;
+}
+export function reportDescription(report) {
+  if (!isDemoReport(report)) return report?.description || '';
+  return report.description.slice(DEMO_REPORT_MARKER.length).trim().replace(/^Contoh aduan:\s*/i,'').replace(/^./u,letter=>letter.toLocaleUpperCase('id-ID'));
+}
+export function reportEventNote(note,demo=false) {
+  if (!demo) return note || '';
+  if (note === 'Data demo: petugas contoh sedang meninjau foto dan titik laporan.') return 'Foto dan titik laporan sedang ditinjau.';
+  if (note === 'Data demo: jadwal contoh dicatat untuk memperlihatkan perubahan status. Belum ada pekerjaan lapangan.') return 'Jadwal penanganan dicatat. Pekerjaan lapangan belum dimulai.';
+  return (note || '').replace(/^Data demo:\s*/i,'');
+}
 export function loginEmail(identifier) {
   const value=identifier.trim().toLowerCase();
   const localAccounts = {usergovernance:'usergovernance@demo.jalanova.invalid',usergovernence:'usergovernence@demo.jalanova.invalid',userwarga:'userwarga@demo.jalanova.invalid'};

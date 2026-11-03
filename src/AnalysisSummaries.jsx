@@ -5,7 +5,7 @@ const qualityNames = { asli:'Foto asli', gerak:'Buram karena gerakan', gelap:'Ge
 
 export function RobustnessChart({ rows = [] }) {
   const max = Math.max(1,...rows.map(row => row.mAP50));
-  return <div className="horizontal-bars">{rows.map(row => <div key={row.degradasi}><div><span>{qualityNames[row.degradasi] || row.degradasi}</span><strong>{number(row.mAP50,3)}</strong></div><div className="bar-rail"><i style={{width:`${row.mAP50 / max * 100}%`,background:row.degradasi === 'gerak' ? '#c57250' : '#337c65'}} /></div></div>)}</div>;
+  return <div className="horizontal-bars">{rows.map(row => <div key={row.degradasi}><div><span>{qualityNames[row.degradasi] || row.degradasi}</span><strong>{number(row.mAP50,3)}</strong></div><div className="bar-rail"><i style={{width:`${row.mAP50 / max * 100}%`,background:row.degradasi === 'gerak' ? '#F7941D' : '#00BFA5'}} /></div></div>)}</div>;
 }
 
 export function DimensionSummary({ site }) {

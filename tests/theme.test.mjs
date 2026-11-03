@@ -39,13 +39,13 @@ test('theme preference persists and survives controller recreation', () => {
   assert.equal(e.root.dataset.theme, 'dark');
   assert.equal(e.root.dataset.themePreference, 'dark');
   assert.equal(e.root.style.colorScheme, 'dark');
-  assert.equal(e.meta.content, '#121b17');
+  assert.equal(e.meta.content, '#012a44');
   e.controller.destroy();
   const fresh = environment({ saved: e.stored, dark: false });
   assert.equal(fresh.root.dataset.theme, 'dark');
   fresh.controller.setPreference('light');
   assert.equal(fresh.root.style.colorScheme, 'light');
-  assert.equal(fresh.meta.content, '#fbfbf6');
+  assert.equal(fresh.meta.content, '#f0f8ff');
   fresh.controller.destroy();
 });
 
@@ -86,7 +86,7 @@ test('temporarily locked light theme ignores stored choices, device changes and 
   const e = environment({ saved: 'dark', dark: true, forcedTheme: 'light' });
   assert.equal(e.root.dataset.theme, 'light');
   assert.equal(e.root.style.colorScheme, 'light');
-  assert.equal(e.meta.content, '#fbfbf6');
+  assert.equal(e.meta.content, '#f0f8ff');
   e.systemChange(false); e.systemChange(true); e.storageChange('dark');
   e.controller.setPreference('dark'); e.controller.setPreference('default');
   assert.equal(e.root.dataset.theme, 'light');

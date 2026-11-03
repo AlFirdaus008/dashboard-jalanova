@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { appHref, dashboardHome, parseAppRoute } from '../src/lib/app-routes.mjs';
-import { validateCitizenReport, reportPhotoPath, loginEmail, DEMO_REPORT_MARKER, isDemoReport, reportDescription } from '../src/lib/citizen-reports.mjs';
+import { validateCitizenReport, reportPhotoPath, loginEmail, DEMO_REPORT_MARKER, isDemoReport, reportAddress, reportDescription, reportEventNote } from '../src/lib/citizen-reports.mjs';
 import { submitCitizenReport } from '../src/lib/citizen-api.mjs';
 import { supabaseConfiguration } from '../src/lib/supabase.mjs';
 import { demoRoadPng } from '../scripts/demo-report-image.mjs';
@@ -46,6 +46,11 @@ test('example reports stay visibly marked and use valid small PNG illustrations'
   assert.equal(isDemoReport({description}),true);
   assert.equal(isDemoReport({description:'Laporan warga biasa.'}),false);
   assert.equal(reportDescription({description}),'Contoh laporan jalan rusak.');
+  const demo={address:'Titik contoh pada Jl. Basuki Rahmat, Surabaya. Bukan lokasi kerusakan nyata.',description:`${DEMO_REPORT_MARKER} Contoh aduan: permukaan jalan turun dan tidak rata.`};
+  assert.equal(reportAddress(demo),'Jl. Basuki Rahmat, Surabaya.');
+  assert.equal(reportDescription(demo),'Permukaan jalan turun dan tidak rata.');
+  assert.equal(reportEventNote('Data demo: petugas contoh sedang meninjau foto dan titik laporan.',true),'Foto dan titik laporan sedang ditinjau.');
+  assert.equal(reportAddress({address:demo.address,description:'Laporan warga biasa.'}),demo.address);
   for(let variant=0;variant<3;variant++){
     const photo=demoRoadPng(variant);
     assert.deepEqual([...photo.subarray(0,8)],[137,80,78,71,13,10,26,10]);

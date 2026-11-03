@@ -1,19 +1,19 @@
 :root {
   color-scheme: light;
-  --page: #f6f7f3;
-  --surface: #fcfdf9;
-  --surface-raised: #fffef9;
-  --surface-soft: #edf2e6;
-  --surface-tint: #eaf0e3;
-  --button-bg: #156553;
-  --button-hover: #0e5142;
+  --page: #f0f8ff;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-soft: #e8f3f9;
+  --surface-tint: #dff4f2;
+  --button-bg: #012a44;
+  --button-hover: #014668;
   --on-button: #ffffff;
-  --map-bg: #eaf0e3;
-  --map-grid: #dde4d8;
-  --map-road: #c1ccba;
-  --map-label: #496456;
+  --map-bg: #eaf5fa;
+  --map-grid: #d4e7ee;
+  --map-road: #bad3de;
+  --map-label: #476473;
   --map-marker-border: #ffffff;
-  --map-selected: #173f34;
+  --map-selected: #012a44;
 }
 
 .app-header.app-header-simple {

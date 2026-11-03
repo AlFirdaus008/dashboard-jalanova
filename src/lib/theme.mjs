@@ -26,7 +26,7 @@ export function createThemeController({ storage, media, root, meta, events, forc
     root.dataset.theme = resolved;
     root.dataset.themePreference = preference;
     root.style.colorScheme = resolved;
-    meta?.setAttribute('content', resolved === 'dark' ? '#121b17' : '#fbfbf6');
+    meta?.setAttribute('content', resolved === 'dark' ? '#012a44' : '#f0f8ff');
     onChange({ preference, resolved });
   };
   const setPreference = value => {

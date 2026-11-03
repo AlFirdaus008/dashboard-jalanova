@@ -50,7 +50,10 @@ fieldset:disabled { opacity:.65; }
 .citizen-photo-input>img { display:block; max-height:340px; width:100%; object-fit:contain; margin-top:14px; }
 .report-input-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
 .citizen-location-picker { margin-block:18px; border:1px solid var(--line); border-radius:5px; overflow:hidden; }
+.citizen-location-map-wrap { position:relative; }
 .citizen-location-map { width:100%; height:320px; z-index:1; background:var(--surface-soft); }
+.citizen-location-center { position:absolute; z-index:500; top:50%; left:50%; transform:translate(-50%,-100%); pointer-events:none; color:#fff; filter:drop-shadow(0 3px 4px #012a4466); }
+.citizen-location-center svg { display:block; fill:var(--navy); stroke:#fff; }
 .citizen-location-picker>button { width:100%; font-size:11px; padding:12px; background:var(--surface); display:flex; align-items:center; justify-content:center; gap:8px; color:var(--green); }
 .citizen-report-form .report-consent { flex-direction:row; align-items:flex-start; gap:12px; margin:24px 0; }
 .report-consent input { margin-top:4px; accent-color:var(--green); }
@@ -66,7 +69,10 @@ fieldset:disabled { opacity:.65; }
 .citizen-report-list>button { display:flex; align-items:center; gap:22px; width:100%; text-align:left; padding:22px 0; border-bottom:1px solid var(--line); }
 .citizen-report-list>button:hover { background:var(--surface-soft); }
 .citizen-report-list>button>div:first-child { flex:1; min-width:0; }
-.citizen-report-list>button>div>span:first-child:not(.citizen-status) { font-size:9px; color:var(--muted); overflow-wrap:anywhere; }
+.report-list-id { display:grid; grid-template-columns:minmax(0,235px) max-content; align-items:center; column-gap:10px; width:fit-content; max-width:100%; }
+.report-list-code { font-size:10px; color:var(--muted); overflow-wrap:anywhere; }
+.citizen-report-list .demo-report-badge { margin-left:0; }
+.citizen-report-list>button>div:nth-child(2) { display:flex; flex:0 0 230px; flex-direction:column; align-items:flex-start; }
 .citizen-report-list h2 { font-size:17px; font-weight:500; margin-top:7px; }
 .citizen-report-list p { font-size:11px; color:var(--muted); margin-top:6px; line-height:1.8; }
 .citizen-report-list small { display:block; font-size:10px; color:var(--muted); margin-top:10px; }
@@ -80,6 +86,7 @@ fieldset:disabled { opacity:.65; }
 .queue-pagination span { margin-right:auto; color:var(--muted); }
 .queue-pagination button:disabled { opacity:.4; }
 .citizen-record { font-size:12px; line-height:1.8; }
+.citizen-record>.demo-report-badge { margin:0 9px 0 0; vertical-align:middle; }
 .citizen-record-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:24px; }
 .citizen-record-grid img { max-width:100%; max-height:340px; object-fit:contain; margin-top:14px; }
 .citizen-record-description,.citizen-report-history,.report-review-form { border-top:1px solid var(--line); margin-top:26px; padding-top:24px; }
@@ -109,6 +116,11 @@ fieldset:disabled { opacity:.65; }
 .work-event-photo>a>span { display:inline-flex; align-items:center; gap:5px; font-size:10px; margin-top:5px; }
 .work-document-link { margin-top:14px; text-decoration:underline; text-underline-offset:3px; }
 @media(max-width:1100px) { .audience-paths { margin-inline:32px; padding-inline:0; } }
+@media(min-width:701px) and (max-width:1100px) {
+  .citizen-report-list>button { flex-wrap:wrap; }
+  .citizen-report-list>button>div:first-child { flex-basis:100%; }
+  .citizen-report-list>button>div:nth-child(2) { flex:1; }
+}
 @media(max-width:700px) {
   .audience-navigation { align-items:flex-start; gap:16px; padding-inline:22px; }
   .audience-navigation>div { gap:8px 16px; }
@@ -120,7 +132,11 @@ fieldset:disabled { opacity:.65; }
   .audience-paths { margin-inline:22px; }
   .citizen-report-list>button { flex-wrap:wrap; gap:12px; }
   .citizen-report-list>button>div:first-child { flex-basis:100%; }
+  .report-list-id { grid-template-columns:minmax(0,1fr) max-content; width:100%; }
   .citizen-report-list>button>div:nth-child(2) { flex:1; }
   .report-form-section>header { gap:12px; }
   .workspace-account { flex-wrap:wrap; align-items:center; }
+  .citizen-location-picker>button { min-height:44px; white-space:normal; line-height:1.5; }
+  .citizen-report-page .page-heading>.button { min-width:140px; }
+  .report-form-section>button.button.primary { width:100%; min-height:44px; }
 }

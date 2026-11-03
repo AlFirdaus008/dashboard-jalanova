@@ -12,7 +12,7 @@ function LocationPicker({latitude,longitude,onChange,disabled}) {
   change.current = onChange;
   useEffect(() => {
     const instance = L.map(element.current,{scrollWheelZoom:false}).setView([-7.276,112.733],12);map.current=instance;
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; OpenStreetMap &copy; CARTO',maxZoom:19}).addTo(instance);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',maxZoom:19}).addTo(instance);
     const click = event => {if(!disabled)change.current(event.latlng.lat.toFixed(6),event.latlng.lng.toFixed(6));};
     instance.on('click',click);
     return () => {instance.remove();map.current=null;marker.current=null;};
@@ -21,11 +21,11 @@ function LocationPicker({latitude,longitude,onChange,disabled}) {
     if(!map.current)return;
     const lat=Number(latitude),lng=Number(longitude);
     if(latitude === '' || longitude === '' || !Number.isFinite(lat) || !Number.isFinite(lng) || Math.abs(lat)>90 || Math.abs(lng)>180){marker.current?.remove();marker.current=null;return;}
-    if(!marker.current)marker.current=L.circleMarker([lat,lng],{radius:8,color:'#156553',fillOpacity:.8}).addTo(map.current);
+    if(!marker.current)marker.current=L.circleMarker([lat,lng],{radius:8,color:'#012a44',fillColor:'#00bfa5',fillOpacity:.9,weight:2}).addTo(map.current);
     else marker.current.setLatLng([lat,lng]);
     if(!map.current.getBounds().contains([lat,lng]))map.current.setView([lat,lng],15);
   }, [latitude,longitude,disabled]);
-  return <div className="citizen-location-picker"><div className="citizen-location-map" ref={element} role="region" aria-label="Pilih lokasi kerusakan pada peta Surabaya" /><button type="button" disabled={disabled} onClick={() => {const center=map.current.getCenter();onChange(center.lat.toFixed(6),center.lng.toFixed(6));}}><MapPin size={14} />Gunakan titik tengah peta</button></div>;
+  return <div className="citizen-location-picker"><div className="citizen-location-map-wrap"><div className="citizen-location-map" ref={element} role="region" aria-label="Pilih lokasi kerusakan pada peta Surabaya" /><div className="citizen-location-center" aria-hidden="true"><MapPin size={34} strokeWidth={2.1} /></div></div><button type="button" disabled={disabled} onClick={() => {const center=map.current.getCenter();onChange(center.lat.toFixed(6),center.lng.toFixed(6));}}><MapPin size={14} />Gunakan titik tengah peta</button></div>;
 }
 
 export function CitizenReportForm() {

@@ -3,7 +3,7 @@ import registry from '../content/road-authorities.json' with { type: 'json' };
 export const authorityRegistry = registry;
 export const authorityNames = { national: 'Nasional', provincial: 'Provinsi', city: 'Kota' };
 export const evidenceNames = { document: 'Dokumen resmi', planning: 'Dokumen perencanaan', report: 'Keterangan resmi', historical: 'Rujukan historis' };
-export const authorityColors = { national: '#9274b8', provincial: '#b68637', city: '#438a75' };
+export const authorityColors = { national: '#012A44', provincial: '#F7941D', city: '#00BFA5' };
 
 export function authorityForRoad(roadId) {
   const road = registry.roads.find(r => r.roadId === roadId);

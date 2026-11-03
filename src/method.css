@@ -10,15 +10,17 @@
 .method-page .dataset-table tbody th>span { display:flex; align-items:center; gap:12px; }
 .method-page .dataset-table tbody th svg { color:var(--green); flex-shrink:0; }
 .method-page .dataset-table tbody th strong { font-weight:500; }
-.method-page .method-two-columns { grid-template-columns:1fr 1fr; gap:36px; }
-.method-data-details { align-self:start; }
-.method-data-details summary { display:flex; align-items:center; gap:10px; color:var(--ink); font-size:16px; font-weight:500; cursor:pointer; list-style:none; }
+.method-page .method-two-columns { grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:48px; }
+.method-page .method-data-details { align-self:start; padding:0; border:0; border-radius:0; background:transparent; box-shadow:none; }
+.method-data-details summary { display:flex; align-items:center; gap:12px; padding:0 0 13px; border-bottom:1px solid var(--line); color:var(--ink); font-size:16px; font-weight:500; line-height:1.5; cursor:pointer; list-style:none; }
+.method-data-details summary>span { flex:1; min-width:0; }
 .method-data-details summary::-webkit-details-marker { display:none; }
 .method-data-details summary svg { color:var(--green); flex-shrink:0; }
 .method-data-details summary::after { content:'+'; margin-left:auto; color:var(--green); font-size:21px; font-weight:400; line-height:1; }
 .method-data-details[open] summary::after { content:'−'; }
 .method-data-details summary:hover { color:var(--green); }
-.method-data-details[open] summary { margin-bottom:14px; }
+.method-data-details[open] summary { margin-bottom:18px; }
+.method-data-details p { max-width:75ch; margin:0 0 14px; line-height:1.8; }
 .method-data-note { font-size:12px; color:var(--muted); border-left:2px solid var(--green); padding-left:16px; line-height:1.9; margin-top:24px; }
 .notebook-pipeline { border-top:1px solid var(--line); }
 .notebook-step { border-bottom:1px solid var(--line); }
@@ -101,6 +103,19 @@
 }
 @media(max-width:700px) {
   .method-page .method-two-columns { grid-template-columns:1fr; gap:26px; }
+  .method-page .dataset-table table { display:block; min-width:0; table-layout:auto; }
+  .method-page .dataset-table colgroup { display:none; }
+  .method-page .dataset-table thead { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+  .method-page .dataset-table tbody,.method-page .dataset-table tbody tr { display:block; }
+  .method-page .dataset-table tbody tr { padding:17px 18px; border-bottom:1px solid var(--line); }
+  .method-page .dataset-table tbody tr:last-child { border-bottom:0; }
+  .method-page .dataset-table tbody th,.method-page .dataset-table tbody td { display:block; width:100%; padding:0; border:0; text-align:left; font-size:12px; line-height:1.7; overflow-wrap:break-word; word-break:normal; }
+  .method-page .dataset-table tbody th { margin-bottom:13px; font-size:13px; }
+  .method-page .dataset-table tbody td+td { margin-top:11px; }
+  .method-page .dataset-table tbody td::before { display:block; margin-bottom:2px; color:var(--muted); font-size:10px; font-weight:600; letter-spacing:.02em; }
+  .method-page .dataset-table tbody td:nth-child(2)::before { content:'Cakupan'; }
+  .method-page .dataset-table tbody td:nth-child(3)::before { content:'Peran dalam analisis'; }
+  .method-data-details summary { font-size:15px; }
   .notebook-step>summary { gap:12px; padding:22px 0; }
   .notebook-step h3 { font-size:17px; }
   .notebook-step-body { padding-left:0; }

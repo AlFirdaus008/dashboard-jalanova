@@ -18,7 +18,7 @@ export function parseCsv(text) {
 export const treatments = { tambal: 'Penambalan', overlay: 'Lapis ulang', rekonstruksi: 'Rekonstruksi', segel_retak: 'Segel retak' };
 export const damageNames = { Pothole: 'Lubang', 'Alligator Crack': 'Retak buaya', 'Longitudinal Crack': 'Retak memanjang', 'Transverse Crack': 'Retak melintang', 'Rutting/Depression': 'Alur / amblas' };
 export const triageNames = { 'Perlu Penanganan Mendesak': 'Mendesak', 'Penanganan Terjadwal Prioritas': 'Terjadwal', 'Pemantauan Rutin Berkala': 'Pemantauan' };
-export const triageColors = { 'Perlu Penanganan Mendesak': '#d36643', 'Penanganan Terjadwal Prioritas': '#d6a744', 'Pemantauan Rutin Berkala': '#438a75' };
+export const triageColors = { 'Perlu Penanganan Mendesak': '#F7941D', 'Penanganan Terjadwal Prioritas': '#00BFA5', 'Pemantauan Rutin Berkala': '#012A44' };
 export const rupiah = value => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(value);
 export const number = (value, digits = 0) => new Intl.NumberFormat('id-ID', { maximumFractionDigits: digits }).format(value);
 export function compactMoney(value) { return value >= 1e9 ? `Rp${number(value / 1e9, 2)} M` : value >= 1e6 ? `Rp${number(value / 1e6, 1)} jt` : rupiah(value); }

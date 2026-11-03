@@ -25,6 +25,9 @@ dist-ssr/
 .gemini/
 artifacts/
 
+# Presentation material kept locally, outside the dashboard repository
+NASKAH_VIDEO_*.md
+
 # Supabase local temp files
 supabase/.branches/
 supabase/.temp/

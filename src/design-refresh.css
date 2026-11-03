@@ -150,7 +150,8 @@
 .app-shell .page-content {
   padding-top:18px;
 }
-.sidebar-controls { padding-right:12px; }
+.sidebar-controls { padding-right:0; }
+.navigation-open .sidebar-controls { justify-content:center; }
 .sidebar-controls .navigation-toggle {
   color:#d0dfcf;
   border-color:#3b6655;
